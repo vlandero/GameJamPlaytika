@@ -6,16 +6,18 @@ public class TimelineManager : MonoBehaviour
 {
     private List<PlayableDirector> _timelines = new List<PlayableDirector>();
     private int _index;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         foreach (Transform child in transform)
         {
             _timelines.Add(child.GetComponent<PlayableDirector>());
             child.gameObject.SetActive(false);
         }
-
-
+    }
+    
+    void Start()
+    {
         if (_timelines.Count > 0)
         { 
             _index = Random.Range(0, _timelines.Count);
@@ -23,6 +25,7 @@ public class TimelineManager : MonoBehaviour
         };
 
     }
+
     /// <summary>
     /// This is a helper method which starts the timeline on a unactive object.
     /// </summary>
