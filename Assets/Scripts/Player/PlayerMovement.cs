@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 3f;
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private Transform orientation;
+    [SerializeField] private Transform[] groundChecks;
 
     private Vector3 moveDirection;
 
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         MovePlayer();
         ApplyGravity();
+        ApplySlopeGravity();
     }
 
     private void MovePlayer()
@@ -54,4 +56,22 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
     }
+
+    private void ApplySlopeGravity()
+    {
+        foreach (Transform groundCheck in groundChecks)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(groundCheck.position, Vector3.down, out hit, groundDistance, groundMask))
+            {
+                float slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+                if (slopeAngle > controller.slopeLimit)
+                {
+                    Vector3 slideDirection = -hit.normal;
+                    controller.Move(slideDirection * gravity * Time.deltaTime);
+                }
+            }
+        }
+    }
+
 }

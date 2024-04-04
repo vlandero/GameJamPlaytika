@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ground
+  - playerBody
   layers:
   - Default
   - TransparentFX
