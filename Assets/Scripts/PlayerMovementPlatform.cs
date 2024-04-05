@@ -27,7 +27,7 @@ public class PlayerMovementPlatform : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = GameManager.instance.SideCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
             {
@@ -62,6 +62,6 @@ public class PlayerMovementPlatform : MonoBehaviour
 
         Vector3 moveDirection = (targetPosition - transform.position).normalized;
 
-        transform.position += moveDirection * movementSpeed * Time.deltaTime * (!(Time.timeScale == GameManager.slowMotionTimeScale) ? 1 : (1 / GameManager.slowMotionTimeScale));
+        transform.position += moveDirection * movementSpeed * Time.deltaTime;
     }
 }

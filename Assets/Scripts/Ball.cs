@@ -43,7 +43,22 @@ public class Ball : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("platform"))
         {
-            ballDirection = GameManager.instance.GetPlatformArrowDirection();
+            //ballDirection = GameManager.instance.GetPlatformArrowDirection();
+            StartCoroutine(Bounce());
         }
+    }
+
+    private IEnumerator Bounce()
+    {
+        GameManager.instance.SeePlatformPerspective();
+        GameManager.instance.frozen = true;
+        Time.timeScale = 0;
+        WaitUntil wait = new WaitUntil(() => Input.GetMouseButtonDown(1));
+        yield return wait;
+        GameManager.instance.frozen = false;
+        GameManager.instance.lauchBall.DestroyAllMarkers();
+        GameManager.instance.SeeSidePerspective();
+        ballDirection = GameManager.instance.lauchBall.launchDirection;
+        Time.timeScale = 1;
     }
 }
