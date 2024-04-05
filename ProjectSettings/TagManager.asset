@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ground
   - playerBody
+  - bottomWall
   - wall
   - brick
   layers:
