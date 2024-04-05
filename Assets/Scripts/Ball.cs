@@ -13,7 +13,7 @@ public class Ball : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        ballDirection = Random.insideUnitSphere.normalized;
+        ballDirection = Vector3.down;
         previousPosition = transform.position;
     }
 
