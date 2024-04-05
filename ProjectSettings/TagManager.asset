@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ground
   - playerBody
+  - wall
+  - brick
   layers:
   - Default
   - TransparentFX
