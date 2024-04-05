@@ -8,6 +8,8 @@ TagManager:
   - playerBody
   - wall
   - brick
+  - platform
+  - ball
   layers:
   - Default
   - TransparentFX
