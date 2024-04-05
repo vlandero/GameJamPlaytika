@@ -19,6 +19,7 @@ public class Ball : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.instance.frozen) return;
         Vector3 currentPosition = transform.position;
 
         previousPosition = currentPosition;
@@ -51,14 +52,11 @@ public class Ball : MonoBehaviour
     private IEnumerator Bounce()
     {
         GameManager.instance.SeePlatformPerspective();
-        GameManager.instance.frozen = true;
-        Time.timeScale = 0;
         WaitUntil wait = new WaitUntil(() => Input.GetMouseButtonDown(1));
         yield return wait;
+        GameManager.instance.SeeSidePerspective();
         GameManager.instance.frozen = false;
         GameManager.instance.lauchBall.DestroyAllMarkers();
-        GameManager.instance.SeeSidePerspective();
         ballDirection = GameManager.instance.lauchBall.launchDirection;
-        Time.timeScale = 1;
     }
 }
