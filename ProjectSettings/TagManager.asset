@@ -11,6 +11,8 @@ TagManager:
   - brick
   - platform
   - ball
+  - PlatformCamera
+  - HitMarker
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - UI
   - ground
   - wall
-  - 
+  - ball
   - 
   - 
   - 
