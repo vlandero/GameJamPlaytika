@@ -8,15 +8,26 @@ public class Ball : MonoBehaviour
     private Vector3 ballDirection;
     private Rigidbody rb;
 
+    private Vector3 previousPosition;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         ballDirection = Random.insideUnitSphere.normalized;
+        previousPosition = transform.position;
     }
 
     void FixedUpdate()
     {
+        Vector3 currentPosition = transform.position;
+
+        previousPosition = currentPosition;
         rb.MovePosition(rb.position + ballSpeed * Time.fixedDeltaTime * ballDirection);
+    }
+
+    public bool IsMovingUp()
+    {
+        return transform.position.y > previousPosition.y;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -29,6 +40,10 @@ public class Ball : MonoBehaviour
             {
                 collision.gameObject.GetComponent<Brick>().HandleHit();
             }
-        }   
+        }
+        if (collision.gameObject.CompareTag("platform"))
+        {
+            ballDirection = GameManager.instance.GetPlatformArrowDirection();
+        }
     }
 }

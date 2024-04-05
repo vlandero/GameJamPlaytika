@@ -7,8 +7,10 @@ using UnityEngine;
 
 public class PlayerMovementPlatform : MonoBehaviour
 {
-    public float movementSpeed = 10f; // Adjust this speed according to your needs
-    public GameObject groundPlane; // Assign your ground plane object in the Unity editor
+    public float movementSpeed = 10f;
+    public GameObject groundPlane;
+    public Transform meshTransform;
+
     private Vector3 targetPosition;
     [SerializeField] private LayerMask groundLayer;
 
@@ -23,22 +25,17 @@ public class PlayerMovementPlatform : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Check for left mouse button click
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-
-
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer)) // Cast a ray from the mouse position, only detecting objects on the "Ground" layer
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
             {
-                // Check if the ray hits the ground plane
                 if (hit.transform.CompareTag("ground"))
                 {
-                    // Get the position clicked by the mouse
                     targetPosition = hit.point;
                     targetPosition = ClampTargetPosition(targetPosition);
-                    targetPosition.y = transform.position.y; // Maintain current Y position
+                    targetPosition.y = transform.position.y;
                     
                 }
             }
@@ -48,18 +45,13 @@ public class PlayerMovementPlatform : MonoBehaviour
 
     private Vector3 ClampTargetPosition(Vector3 targetPosition)
     {
-        // Get the bounds of the ground plane
         Renderer groundRenderer = groundPlane.GetComponent<Renderer>();
         Bounds bounds = groundRenderer.bounds;
 
-        // Clamp the target position within the bounds
-        var halfPlayerScale = transform.localScale / 2;
+        var halfPlayerScale = meshTransform.localScale / 2;
         float clampedX = Mathf.Clamp(targetPosition.x, bounds.min.x + halfPlayerScale.x + .3f, bounds.max.x - halfPlayerScale.x - .3f);
         float clampedZ = Mathf.Clamp(targetPosition.z, bounds.min.z + halfPlayerScale.z + .3f, bounds.max.z - halfPlayerScale.z - .3f);
 
-        Debug.Log(clampedZ + " " + clampedX);
-
-        // Return the clamped target position
         return new Vector3(clampedX, targetPosition.y, clampedZ);
     }
 
@@ -70,6 +62,6 @@ public class PlayerMovementPlatform : MonoBehaviour
 
         Vector3 moveDirection = (targetPosition - transform.position).normalized;
 
-        transform.position += moveDirection * movementSpeed * Time.deltaTime;
+        transform.position += moveDirection * movementSpeed * Time.deltaTime * (!(Time.timeScale == GameManager.slowMotionTimeScale) ? 1 : (1 / GameManager.slowMotionTimeScale));
     }
 }
