@@ -25,25 +25,32 @@ public class Tutorial : MonoBehaviour
             tutorialText.text = "Welcome to the tutorial! Click anywhere to continue.";
             tutorialImage.color = new Color(255, 255, 255, 0);
             yield return TutorialStep();
-            tutorialText.text = "Use your left mouse button to move the platform.";
-            tutorialImage.sprite = GameManager.instance.leftClickSprite;
+            tutorialText.text = "Use your WASD keys to move the platform.";
+            tutorialImage.sprite = GameManager.instance.wasdSprite;
             tutorialImage.color = new Color(255, 255, 255, 1);
             yield return TutorialStep();
             tutorialText.text = "Use your right mouse button to move the camera around.";
             tutorialImage.sprite = GameManager.instance.rightClickSprite;
             yield return TutorialStep();
             currentStep++;
+            GameManager.instance.ballComponent.ballSpeed = GameManager.instance.ballComponent.tutorialBallSpeed;
         }
         else if (currentStep == 1)
         {
+            tutorialText.text = "You can launch the ball wherever you want. You are the platform now.";
+            tutorialImage.sprite = null;
+            tutorialImage.color = new Color(255, 255, 255, 0);
+            yield return TutorialStep();
             tutorialText.text = "Use your left mouse button to shoot the ball.";
             tutorialImage.sprite = GameManager.instance.leftClickSprite;
             tutorialImage.color = new Color(255, 255, 255, 1);
             yield return TutorialStep();
-            tutorialText.text = "Use your right mouse button to rotate the camera around.";
-            tutorialImage.sprite = GameManager.instance.rightClickSprite;
+            tutorialText.text = "Use your middle mouse button to rotate the camera around.";
+            tutorialImage.sprite = GameManager.instance.middleClickSprite;
+            tutorialImage.color = new Color(255, 255, 255, 1);
             yield return TutorialStep();
             currentStep++;
+            GameManager.instance.ballComponent.ballSpeed = GameManager.instance.ballComponent.normalBallSpeed;
         }
         GetComponent<Canvas>().enabled = false;
         GameManager.instance.frozen = false;

@@ -25,7 +25,7 @@ public class PlayerMovementPlatform : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Ray ray = GameManager.instance.SideCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -36,7 +36,6 @@ public class PlayerMovementPlatform : MonoBehaviour
                     targetPosition = hit.point;
                     targetPosition = ClampTargetPosition(targetPosition);
                     targetPosition.y = transform.position.y;
-                    
                 }
             }
 

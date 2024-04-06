@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6826605738494439389}
   - component: {fileID: 8530610811012494116}
+  - component: {fileID: 7984604922534225469}
   - component: {fileID: 7353395464616543361}
   - component: {fileID: 2485728179138132322}
   - component: {fileID: 3054182049831541518}
@@ -58,7 +59,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   arrowVisible: 0
---- !u!114 &7353395464616543361
+--- !u!114 &7984604922534225469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,6 +67,21 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138612982329320103}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deef99fcfb15aae41a5c085787938d72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 15
+  groundPlane: {fileID: 0}
+  meshTransform: {fileID: 9215225201440430644}
+--- !u!114 &7353395464616543361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138612982329320103}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9998661d0f89f549afb6a75957a5944, type: 3}
   m_Name: 
@@ -89,12 +105,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   launchDirection: {x: 0, y: 0, z: 0}
+  launchPosition: {x: 0, y: 0, z: 0}
   wallMask:
     serializedVersion: 2
     m_Bits: 128
-  hitMarkerPrefab: {fileID: 7099531592410597272, guid: 54f52a3a4505be745ac1f1647da6ef0a,
-    type: 3}
-  markerDuration: 1
+  hitMark: {fileID: 0}
 --- !u!54 &3054182049831541518
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -120,7 +135,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1426643023902110452
 GameObject:
@@ -150,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 1426643023902110452}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.499, z: -0}
+  m_LocalPosition: {x: 0, y: 1.28, z: -0}
   m_LocalScale: {x: 1, y: 0.93901, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -263,7 +278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf07460c3ac3c7d4088bfd12a0e961df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
+  rotationSpeed: 20
+  maxRotationAngle: 45
 --- !u!1 &2181762380925324587
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +445,7 @@ Transform:
   m_GameObject: {fileID: 6506052664934763710}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.561, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 0.5, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -251,6 +251,16 @@ PrefabInstance:
       propertyPath: ballSpeed
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 4891734760510080860, guid: 75a938a3286e69d44813f36fd6bfb670,
+        type: 3}
+      propertyPath: normalBallSpeed
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891734760510080860, guid: 75a938a3286e69d44813f36fd6bfb670,
+        type: 3}
+      propertyPath: tutorialBallSpeed
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 6611778451751016866, guid: 75a938a3286e69d44813f36fd6bfb670,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -776,7 +786,7 @@ PrefabInstance:
     - target: {fileID: 4205343225545892292, guid: 59a6950714cf1a147a58d0f46775f666,
         type: 3}
       propertyPath: tutorialActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4205343225545892292, guid: 59a6950714cf1a147a58d0f46775f666,
         type: 3}
@@ -1168,7 +1178,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526945921}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -2365,8 +2375,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -32, y: -24}
-  m_SizeDelta: {x: 500, y: 50}
+  m_AnchoredPosition: {x: -32, y: -49}
+  m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1280039168
 MonoBehaviour:
@@ -2424,7 +2434,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3099,11 +3109,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HitMarker
       objectReference: {fileID: 0}
-    - target: {fileID: 7099531592410597272, guid: 54f52a3a4505be745ac1f1647da6ef0a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3128,35 +3133,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform
       objectReference: {fileID: 0}
-    - target: {fileID: 1426643023902110452, guid: 038a9ee6d1ef93848ac223acb3125ed0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181762380925324587, guid: 038a9ee6d1ef93848ac223acb3125ed0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2485728179138132322, guid: 038a9ee6d1ef93848ac223acb3125ed0,
         type: 3}
       propertyPath: hitMark
       value: 
       objectReference: {fileID: 2146640859}
-    - target: {fileID: 6005930822866566550, guid: 038a9ee6d1ef93848ac223acb3125ed0,
+    - target: {fileID: 3054182049831541518, guid: 038a9ee6d1ef93848ac223acb3125ed0,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 6211737528918471584, guid: 038a9ee6d1ef93848ac223acb3125ed0,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 20
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 6826605738494439389, guid: 038a9ee6d1ef93848ac223acb3125ed0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.85
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 6826605738494439389, guid: 038a9ee6d1ef93848ac223acb3125ed0,
         type: 3}
@@ -3204,6 +3194,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7353395464616543361, guid: 038a9ee6d1ef93848ac223acb3125ed0,
+        type: 3}
+      propertyPath: groundPlane
+      value: 
+      objectReference: {fileID: 1832841123}
+    - target: {fileID: 7984604922534225469, guid: 038a9ee6d1ef93848ac223acb3125ed0,
         type: 3}
       propertyPath: groundPlane
       value: 
