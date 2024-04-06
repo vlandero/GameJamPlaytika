@@ -7,15 +7,14 @@ public static class CameraSwap
 
     public static IEnumerator SwitchCameras(Camera fromCam, Camera toCam, float duration)
     {
-        Debug.Log("Am inceput");
         isSwitching = true;
 
-        Vector3 oldPosition = fromCam.transform.position;
-        Quaternion oldRotation = fromCam.transform.rotation;
+        Vector3 oldPosition = fromCam.transform.localPosition;
+        Quaternion oldRotation = fromCam.transform.localRotation;
         
         float elapsedTime = 0;
 
-        while (elapsedTime < duration && fromCam.transform.position != toCam.transform.position)
+        while (elapsedTime < duration && Vector3.Distance(fromCam.transform.position, toCam.transform.position) > 0.15f)
         {
             fromCam.transform.position = Vector3.Lerp(fromCam.transform.position, toCam.transform.position, elapsedTime/duration);
             fromCam.transform.rotation = Quaternion.Slerp(fromCam.transform.rotation, toCam.transform.rotation, elapsedTime/duration);
@@ -27,12 +26,10 @@ public static class CameraSwap
         toCam.gameObject.SetActive(true);
         fromCam.gameObject.SetActive(false);
 
-        fromCam.transform.position = oldPosition;
-        fromCam.transform.rotation = oldRotation;
+        fromCam.transform.localPosition = oldPosition;
+        fromCam.transform.localRotation = oldRotation;
 
         isSwitching = false;
-        Debug.Log("Am terminat");
-        
     }
 
 }

@@ -6,23 +6,32 @@ public class Ball : MonoBehaviour
 {
     public float ballSpeed = 5f;
     private Vector3 ballDirection;
-    private Rigidbody rb;
+    public Rigidbody rb;
 
     private Vector3 previousPosition;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        ballDirection = Random.insideUnitSphere.normalized;
+        ballDirection = Vector3.down;
         previousPosition = transform.position;
     }
 
     void FixedUpdate()
     {
+        if (GameManager.instance.frozen)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+        rb.velocity = Vector3.zero;
         Vector3 currentPosition = transform.position;
 
         previousPosition = currentPosition;
-        rb.MovePosition(rb.position + ballSpeed * Time.fixedDeltaTime * ballDirection);
+        rb.velocity = ballSpeed * ballDirection * Time.deltaTime;
     }
 
     public bool IsMovingUp()
@@ -51,14 +60,10 @@ public class Ball : MonoBehaviour
     private IEnumerator Bounce()
     {
         GameManager.instance.SeePlatformPerspective();
-        GameManager.instance.frozen = true;
-        Time.timeScale = 0;
-        WaitUntil wait = new WaitUntil(() => Input.GetMouseButtonDown(1));
+        yield return new WaitForSeconds(1f);
+        WaitUntil wait = new WaitUntil(() => Input.GetMouseButtonDown(0));
         yield return wait;
-        GameManager.instance.frozen = false;
-        GameManager.instance.lauchBall.DestroyAllMarkers();
         GameManager.instance.SeeSidePerspective();
         ballDirection = GameManager.instance.lauchBall.launchDirection;
-        Time.timeScale = 1;
     }
 }
