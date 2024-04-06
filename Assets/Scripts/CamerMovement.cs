@@ -10,12 +10,12 @@ public class CamerMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(2))
+        if (Input.GetMouseButtonDown(1))
         {
             previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
         }
 
-        if(Input.GetMouseButton(2))
+        if(Input.GetMouseButton(1))
         {
             Vector3 direction = previousPosition - cam.ScreenToViewportPoint(Input.mousePosition);
             cam.transform.position = target.position;
