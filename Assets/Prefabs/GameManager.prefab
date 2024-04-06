@@ -58,7 +58,7 @@ MonoBehaviour:
   rotatePlatformCamera: {fileID: 0}
   tutorial: {fileID: 0}
   slowMotionActive: 0
-  tutorialActive: 0
+  tutorialActive: 1
   tutorialCanvas: {fileID: 0}
   leftClickSprite: {fileID: 21300000, guid: 7dd54158a409431459fd9e51ae1bb0af, type: 3}
   rightClickSprite: {fileID: 21300000, guid: 160252296335d794b8dcf8b256d52b0b, type: 3}

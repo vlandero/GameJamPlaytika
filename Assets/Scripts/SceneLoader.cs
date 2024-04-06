@@ -8,11 +8,13 @@ public class SceneLoader : MonoBehaviour
     public void LoadScene(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
-    }
-
+    }  
+    
     public void ExitGame()
     {
         Application.Quit();
         //UnityEditor.EditorApplication.isPlaying = false;
     }
+
+
 }
