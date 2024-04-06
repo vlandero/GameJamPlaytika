@@ -32,11 +32,11 @@ public class ResolutionChanger : MonoBehaviour
         List<string> options = new List<string>();
         for (int i = 0; i < filteredResolutions.Count; i++)
         {
-            string resolutionOption = filteredResolutions[i].width + "x"; // + filteredResolutions[i].height + " Hz";
+            string resolutionOption = filteredResolutions[i].width + "x" + filteredResolutions[i].height;
             options.Add(resolutionOption);
             if (filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height)
             {
-                currentResolutionIndex = i;
+                currentResolutionIndex = i-3;
             }
 
         }

@@ -12,7 +12,7 @@ public class Brick : MonoBehaviour
         health--;
         if (health <= 0)
         {
-            GameManager.instance.AddScore(score);
+            GameManager.instance.DestroyBrick();
             Destroy(gameObject);
         }
     }
