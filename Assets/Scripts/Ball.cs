@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     public Rigidbody rb;
 
     private Vector3 previousPosition;
+    private bool firstTimeBounce = true;
 
     void Start()
     {
@@ -59,11 +60,21 @@ public class Ball : MonoBehaviour
 
     private IEnumerator Bounce()
     {
+        if (firstTimeBounce)
+        {
+            firstTimeBounce = false;
+            yield return StartCoroutine(FirstBounce());
+        }
         GameManager.instance.SeePlatformPerspective();
         yield return new WaitForSeconds(1f);
         WaitUntil wait = new WaitUntil(() => Input.GetMouseButtonDown(0));
         yield return wait;
         GameManager.instance.SeeSidePerspective();
         ballDirection = GameManager.instance.lauchBall.launchDirection;
+    }
+
+    private IEnumerator FirstBounce()
+    {
+        yield return GameManager.instance.tutorial.Sequence();
     }
 }
