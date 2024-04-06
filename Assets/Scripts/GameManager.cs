@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public LauchBall lauchBall;
     public bool frozen = false;
     public CamerMovement camerMovement;
+    public RotatePlatformCamera rotatePlatformCamera;
+
+    public bool slowMotionActive = false;
 
     private void Awake()
     {
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
         //moveArrowComponent = platform.GetComponent<MoveArrow>();
         playerMovementPlatform = platform.GetComponent<PlayerMovementPlatform>();
         lauchBall = platform.GetComponent<LauchBall>();
+        rotatePlatformCamera = PlatformCamera.GetComponent<RotatePlatformCamera>();
     }
 
     //public Vector3 GetPlatformArrowDirection()
@@ -44,17 +48,17 @@ public class GameManager : MonoBehaviour
     {
         if (Mathf.Abs(ball.transform.position.y - platform.transform.position.y) < 3)
         {
-            if (ballComponent.IsMovingUp())
-            {
-                //moveArrowComponent.DeactivateArrow();
-                Time.timeScale = 1;
-            }
-            else
+            if(ballComponent.rb.velocity.y < 0)
             {
                 if (frozen) return;
                 Time.timeScale = slowMotionTimeScale;
-                //moveArrowComponent.ActivateArrow();
             }
+            else
+            {
+                Time.timeScale = 1;
+            }
+            
+            //moveArrowComponent.ActivateArrow();
         }
         if (ball.transform.position.y < platform.transform.position.y - 1)
         {
@@ -74,6 +78,7 @@ public class GameManager : MonoBehaviour
 
     public void SeePlatformPerspective()
     {
+        rotatePlatformCamera.ResetRotation();
         frozen = true;
         camerMovement.enabled = false;
         StartCoroutine(CameraSwap.SwitchCameras(SideCamera, PlatformCamera, .5f));
@@ -85,7 +90,7 @@ public class GameManager : MonoBehaviour
     {
         frozen = false;
         camerMovement.enabled = true;
-        StartCoroutine(CameraSwap.SwitchCameras(PlatformCamera, SideCamera, .1f));
+        StartCoroutine(CameraSwap.SwitchCameras(PlatformCamera, SideCamera, .5f));
         lauchBall.enabled = false;
         playerMovementPlatform.enabled = true;
     }

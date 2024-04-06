@@ -236,6 +236,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 128890151779016162, guid: 75a938a3286e69d44813f36fd6bfb670,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 3810081294121782214, guid: 75a938a3286e69d44813f36fd6bfb670,
         type: 3}
       propertyPath: m_Name
@@ -244,7 +249,7 @@ PrefabInstance:
     - target: {fileID: 4891734760510080860, guid: 75a938a3286e69d44813f36fd6bfb670,
         type: 3}
       propertyPath: ballSpeed
-      value: 10
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 6611778451751016866, guid: 75a938a3286e69d44813f36fd6bfb670,
         type: 3}
@@ -2271,10 +2276,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform
       objectReference: {fileID: 0}
-    - target: {fileID: 1426643023902110452, guid: 038a9ee6d1ef93848ac223acb3125ed0,
+    - target: {fileID: 6211737528918471584, guid: 038a9ee6d1ef93848ac223acb3125ed0,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: rotationSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6826605738494439389, guid: 038a9ee6d1ef93848ac223acb3125ed0,
         type: 3}
