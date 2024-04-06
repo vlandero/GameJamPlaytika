@@ -28,7 +28,6 @@ public class Ball : MonoBehaviour
         {
             rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
-        rb.velocity = Vector3.zero;
         Vector3 currentPosition = transform.position;
 
         previousPosition = currentPosition;
@@ -60,7 +59,7 @@ public class Ball : MonoBehaviour
 
     private IEnumerator Bounce()
     {
-        if (firstTimeBounce)
+        if (firstTimeBounce && GameManager.instance.tutorialActive)
         {
             firstTimeBounce = false;
             yield return StartCoroutine(FirstBounce());
@@ -70,6 +69,7 @@ public class Ball : MonoBehaviour
         WaitUntil wait = new WaitUntil(() => Input.GetMouseButtonDown(0));
         yield return wait;
         GameManager.instance.SeeSidePerspective();
+        transform.position = GameManager.instance.lauchBall.launchPosition;
         ballDirection = GameManager.instance.lauchBall.launchDirection;
     }
 
