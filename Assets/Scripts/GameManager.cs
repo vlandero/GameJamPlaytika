@@ -20,10 +20,14 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool frozen = false;
     [HideInInspector] public CamerMovement camerMovement;
     [HideInInspector] public RotatePlatformCamera rotatePlatformCamera;
+    [HideInInspector] public Tutorial tutorial;
+    [HideInInspector] public bool slowMotionActive = false;
     [Header("Tutorial")]
     public bool tutorialActive = false;
-
-    public bool slowMotionActive = false;
+    public GameObject tutorialCanvas;
+    public Sprite leftClickSprite;
+    public Sprite rightClickSprite;
+    [HideInInspector] public bool tutorialStepActive = false;
 
     private void Awake()
     {
@@ -41,6 +45,8 @@ public class GameManager : MonoBehaviour
         lauchBall = platform.GetComponent<LauchBall>();
         rotatePlatformCamera = PlatformCamera.GetComponent<RotatePlatformCamera>();
         bricksCount = bricksComponent.transform.childCount;
+        tutorial = tutorialCanvas.GetComponentInChildren<Tutorial>();
+        tutorialStepActive = tutorialActive;
     }
 
     //public Vector3 GetPlatformArrowDirection()
@@ -50,6 +56,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(tutorialStepActive)
+        {
+            tutorialStepActive = false;
+            tutorial.ShowTutorial();
+        }
         if (Mathf.Abs(ball.transform.position.y - platform.transform.position.y) < 3)
         {
             if(ballComponent.rb.velocity.y < 0)

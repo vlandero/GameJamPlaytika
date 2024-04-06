@@ -37,7 +37,6 @@ public class RotatePlatformCamera : MonoBehaviour
 
     public void ResetRotation()
     {
-        Debug.Log("Resetting rotation");
         transform.localRotation = Quaternion.identity;
         transform.Rotate(new Vector3(-90, 0, 0));
     }

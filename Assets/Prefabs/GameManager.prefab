@@ -44,4 +44,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6669ffc4c14b2174481ee86f2f260b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
+  bricksComponent: {fileID: 0}
+  ball: {fileID: 0}
+  platform: {fileID: 0}
+  SideCamera: {fileID: 0}
+  PlatformCamera: {fileID: 0}
+  ballComponent: {fileID: 0}
+  playerMovementPlatform: {fileID: 0}
+  lauchBall: {fileID: 0}
+  bricksCount: 0
+  frozen: 0
+  camerMovement: {fileID: 0}
+  rotatePlatformCamera: {fileID: 0}
+  tutorial: {fileID: 0}
+  slowMotionActive: 0
+  tutorialActive: 0
+  tutorialCanvas: {fileID: 0}
+  leftClickSprite: {fileID: 21300000, guid: 7dd54158a409431459fd9e51ae1bb0af, type: 3}
+  rightClickSprite: {fileID: 21300000, guid: 160252296335d794b8dcf8b256d52b0b, type: 3}
+  tutorialStepActive: 0
