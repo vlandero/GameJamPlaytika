@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static float slowMotionTimeScale = 0.4f;
     public static float platformStopTime = 3f;
-    public int score = 0;
+    public GameObject bricksComponent;
     public GameObject ball;
     public GameObject platform;
     //public MoveArrow moveArrowComponent;
@@ -16,9 +16,12 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public Ball ballComponent;
     [HideInInspector] public PlayerMovementPlatform playerMovementPlatform;
     [HideInInspector] public LauchBall lauchBall;
-    public bool frozen = false;
-    public CamerMovement camerMovement;
-    public RotatePlatformCamera rotatePlatformCamera;
+    [HideInInspector] public int bricksCount;
+    [HideInInspector] public bool frozen = false;
+    [HideInInspector] public CamerMovement camerMovement;
+    [HideInInspector] public RotatePlatformCamera rotatePlatformCamera;
+    [Header("Tutorial")]
+    public bool tutorialActive = false;
 
     public bool slowMotionActive = false;
 
@@ -37,6 +40,7 @@ public class GameManager : MonoBehaviour
         playerMovementPlatform = platform.GetComponent<PlayerMovementPlatform>();
         lauchBall = platform.GetComponent<LauchBall>();
         rotatePlatformCamera = PlatformCamera.GetComponent<RotatePlatformCamera>();
+        bricksCount = bricksComponent.transform.childCount;
     }
 
     //public Vector3 GetPlatformArrowDirection()
@@ -62,18 +66,28 @@ public class GameManager : MonoBehaviour
         }
         if (ball.transform.position.y < platform.transform.position.y - 1)
         {
-            GameOver();
+            GameOverLoss();
+        }
+        if(bricksCount == 0)
+        {
+            GameOverWin();
         }
     }
 
-    public void GameOver()
+    public void GameOverLoss()
     {
         Time.timeScale = 0;
     }
 
-    public void AddScore(int value)
+    public void GameOverWin()
     {
-        score += value;
+        Time.timeScale = 0;
+        Debug.Log("You win!");
+    }
+
+    public void DestroyBrick()
+    {
+        bricksCount--;
     }
 
     public void SeePlatformPerspective()
