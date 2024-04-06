@@ -236,30 +236,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 128890151779016162, guid: 75a938a3286e69d44813f36fd6bfb670,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
     - target: {fileID: 3810081294121782214, guid: 75a938a3286e69d44813f36fd6bfb670,
         type: 3}
       propertyPath: m_Name
       value: Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 4891734760510080860, guid: 75a938a3286e69d44813f36fd6bfb670,
-        type: 3}
-      propertyPath: ballSpeed
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 4891734760510080860, guid: 75a938a3286e69d44813f36fd6bfb670,
-        type: 3}
-      propertyPath: normalBallSpeed
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 4891734760510080860, guid: 75a938a3286e69d44813f36fd6bfb670,
-        type: 3}
-      propertyPath: tutorialBallSpeed
-      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 6611778451751016866, guid: 75a938a3286e69d44813f36fd6bfb670,
         type: 3}
@@ -783,11 +763,6 @@ PrefabInstance:
       propertyPath: PlatformCamera
       value: 
       objectReference: {fileID: 1455448460}
-    - target: {fileID: 4205343225545892292, guid: 59a6950714cf1a147a58d0f46775f666,
-        type: 3}
-      propertyPath: tutorialActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4205343225545892292, guid: 59a6950714cf1a147a58d0f46775f666,
         type: 3}
       propertyPath: tutorialCanvas
@@ -3138,11 +3113,6 @@ PrefabInstance:
       propertyPath: hitMark
       value: 
       objectReference: {fileID: 2146640859}
-    - target: {fileID: 3054182049831541518, guid: 038a9ee6d1ef93848ac223acb3125ed0,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 126
-      objectReference: {fileID: 0}
     - target: {fileID: 6826605738494439389, guid: 038a9ee6d1ef93848ac223acb3125ed0,
         type: 3}
       propertyPath: m_LocalPosition.x
