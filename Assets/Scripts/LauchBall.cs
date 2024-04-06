@@ -18,7 +18,7 @@ public class LauchBall : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, wallMask))
             {
-                launchDirection = (hit.point - transform.position).normalized;
+                launchDirection = (hit.point - transform.localPosition).normalized;
             }
         }
     }
