@@ -50,7 +50,7 @@ MonoBehaviour:
   SideCamera: {fileID: 0}
   PlatformCamera: {fileID: 0}
   ballComponent: {fileID: 0}
-  playerMovementPlatform: {fileID: 0}
+  playerMovementwasd: {fileID: 0}
   lauchBall: {fileID: 0}
   bricksCount: 0
   frozen: 0
@@ -62,4 +62,6 @@ MonoBehaviour:
   tutorialCanvas: {fileID: 0}
   leftClickSprite: {fileID: 21300000, guid: 7dd54158a409431459fd9e51ae1bb0af, type: 3}
   rightClickSprite: {fileID: 21300000, guid: 160252296335d794b8dcf8b256d52b0b, type: 3}
+  wasdSprite: {fileID: 21300000, guid: 4452ac30c52f8bd4f935153586e6101d, type: 3}
+  middleClickSprite: {fileID: 21300000, guid: 10c7fb2e6d38ccd48a266457f002c225, type: 3}
   tutorialStepActive: 0

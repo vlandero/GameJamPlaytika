@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public Camera SideCamera;
     [HideInInspector] public Camera PlatformCamera;
     [HideInInspector] public Ball ballComponent;
-    [HideInInspector] public PlayerMovementPlatform playerMovementPlatform;
+    [HideInInspector] public PlayerMovementWASD playerMovementwasd;
     [HideInInspector] public LauchBall lauchBall;
     [HideInInspector] public int bricksCount;
     [HideInInspector] public bool frozen = false;
@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public GameObject tutorialCanvas;
     public Sprite leftClickSprite;
     public Sprite rightClickSprite;
+    public Sprite wasdSprite;
+    public Sprite middleClickSprite;
     [HideInInspector] public bool tutorialStepActive = false;
 
     private void Awake()
@@ -41,12 +43,15 @@ public class GameManager : MonoBehaviour
     {
         ballComponent = ball.GetComponent<Ball>();
         //moveArrowComponent = platform.GetComponent<MoveArrow>();
-        playerMovementPlatform = platform.GetComponent<PlayerMovementPlatform>();
+        playerMovementwasd = platform.GetComponent<PlayerMovementWASD>();
         lauchBall = platform.GetComponent<LauchBall>();
         rotatePlatformCamera = PlatformCamera.GetComponent<RotatePlatformCamera>();
         bricksCount = bricksComponent.transform.childCount;
         tutorial = tutorialCanvas.GetComponentInChildren<Tutorial>();
         tutorialStepActive = tutorialActive;
+
+        lauchBall.enabled = false;
+        playerMovementwasd.enabled = true;
     }
 
     //public Vector3 GetPlatformArrowDirection()
@@ -107,7 +112,7 @@ public class GameManager : MonoBehaviour
         frozen = true;
         camerMovement.enabled = false;
         StartCoroutine(CameraSwap.SwitchCameras(SideCamera, PlatformCamera, .5f));
-        playerMovementPlatform.enabled = false;
+        playerMovementwasd.enabled = false;
         lauchBall.enabled = true;
     }
 
@@ -117,6 +122,6 @@ public class GameManager : MonoBehaviour
         camerMovement.enabled = true;
         StartCoroutine(CameraSwap.SwitchCameras(PlatformCamera, SideCamera, .5f));
         lauchBall.enabled = false;
-        playerMovementPlatform.enabled = true;
+        playerMovementwasd.enabled = true;
     }
 }

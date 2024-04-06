@@ -5,6 +5,8 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public float ballSpeed = 5f;
+    public float normalBallSpeed = 5f;
+    public float tutorialBallSpeed = 2f;
     private Vector3 ballDirection;
     public Rigidbody rb;
 
@@ -16,6 +18,7 @@ public class Ball : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         ballDirection = Vector3.down;
         previousPosition = transform.position;
+        ballSpeed = normalBallSpeed;
     }
 
     void FixedUpdate()
@@ -59,18 +62,19 @@ public class Ball : MonoBehaviour
 
     private IEnumerator Bounce()
     {
+        GameManager.instance.SeePlatformPerspective();
+        yield return new WaitForSeconds(1f);
         if (firstTimeBounce && GameManager.instance.tutorialActive)
         {
             firstTimeBounce = false;
             yield return StartCoroutine(FirstBounce());
         }
-        GameManager.instance.SeePlatformPerspective();
-        yield return new WaitForSeconds(1f);
         WaitUntil wait = new WaitUntil(() => Input.GetMouseButtonDown(0));
         yield return wait;
         GameManager.instance.SeeSidePerspective();
         transform.position = GameManager.instance.lauchBall.launchPosition;
         ballDirection = GameManager.instance.lauchBall.launchDirection;
+        GameManager.instance.lauchBall.hitMark.SetActive(false);
     }
 
     private IEnumerator FirstBounce()

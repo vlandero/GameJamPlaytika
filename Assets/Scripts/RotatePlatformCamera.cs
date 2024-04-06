@@ -9,11 +9,11 @@ public class RotatePlatformCamera : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(2))
         {
             lastMousePosition = Input.mousePosition;
         }
-        else if (Input.GetMouseButton(1))
+        else if (Input.GetMouseButton(2))
         {
             Vector3 mouseDelta = Input.mousePosition - lastMousePosition;
 
