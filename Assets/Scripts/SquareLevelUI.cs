@@ -10,6 +10,7 @@ public class SquareLevelUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI numberOfStars;
     [SerializeField] private Sprite lockIconUnlocked;
     [SerializeField] private Sprite lockIconLocked;
+    [SerializeField] private GameObject square;
 
     public void UpdateLevelData()
     {
@@ -19,6 +20,7 @@ public class SquareLevelUI : MonoBehaviour
             numberOfStars.text = "???";
             return;
         }
+        square.GetComponent<SpriteRenderer>().sprite = levelData.levelImage;
         levelName.text = levelData.title;
         numberOfStars.text = levelData.starsGained.ToString() + " *";
     }

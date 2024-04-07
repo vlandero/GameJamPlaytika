@@ -455,7 +455,9 @@ MonoBehaviour:
     starsGained: 0
     unlocked: 0
     secretUnlocked: 0
+    levelImage: {fileID: 0}
   levelName: {fileID: 2652073488677268052}
   numberOfStars: {fileID: 7477773911832488027}
   lockIconUnlocked: {fileID: 0}
   lockIconLocked: {fileID: 0}
+  square: {fileID: 1739607651613927092}
