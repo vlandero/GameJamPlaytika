@@ -23,7 +23,10 @@ public static class CameraSwap
             yield return new WaitForSeconds(duration/100f);
         }
 
+
         toCam.gameObject.SetActive(true);
+        fromCam.GetComponent<AudioListener>().enabled = false;
+        toCam.GetComponent<AudioListener>().enabled = true;
         fromCam.gameObject.SetActive(false);
 
         fromCam.transform.localPosition = oldPosition;
