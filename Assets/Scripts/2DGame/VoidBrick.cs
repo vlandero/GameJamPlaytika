@@ -1,16 +1,18 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VoidBrick : MonoBehaviour
 {
     public Transform _bricksHolder;
     private Transform _player;
     public Camera _toCamera;
-
+    public Intro _intro;
     // Start is called before the first frame update
     private void Awake()
     {
         _toCamera = GameObject.FindGameObjectWithTag("platform").GetComponent<Camera>();
+        _intro = FindAnyObjectByType<Intro>();
     }
     void Start()
     {
@@ -53,6 +55,15 @@ public class VoidBrick : MonoBehaviour
         _toCamera.transform.LookAt(new Vector3(0, 3, 0));
         StartCoroutine(CameraSwap.SwitchCameras(Camera.main, _toCamera, 1f));
 
+        yield return new WaitForSeconds(1f);
+        _intro.StartChatBox(3);
+
+        yield return new WaitUntil(() => _intro.n == 0);
+
+        yield return new WaitForSeconds(1f);
+
+
+        SceneManager.LoadScene(1);
 
         // o sa revin si o sa pun chestia asta cand se porneste camera
         /* foreach (Transform brick in _bricks3D)
