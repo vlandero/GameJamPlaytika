@@ -60,6 +60,15 @@ public class Ball : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("SpeedPowerup"))
+        {
+            Destroy(other.gameObject);
+            ballSpeed += 50f;
+        }
+    }
+
     private IEnumerator Bounce()
     {
         GameManager.instance.SeePlatformPerspective();
