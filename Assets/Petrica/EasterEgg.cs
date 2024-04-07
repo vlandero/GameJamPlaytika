@@ -5,7 +5,7 @@ using UnityEngine;
 public class EasterEgg : MonoBehaviour
 {
     // Update is called once per frame
-    public int secret;
+    public static int secret;
 
     private void Start()
     {
