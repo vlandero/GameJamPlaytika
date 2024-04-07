@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
         progressData = JsonUtility.ToJson(savedLevelsData);
         PlayerPrefs.SetString("LevelProgress", progressData);
         PlayerPrefs.Save();
+        PlayerPrefs.SetInt("SecretLevel2", EasterEgg.secret);
         winCanvas.GetComponentInChildren<ShowStars>().starNumber = starsGained;
         winCanvas.SetActive(true);
     }
