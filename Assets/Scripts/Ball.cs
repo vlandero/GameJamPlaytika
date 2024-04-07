@@ -13,6 +13,13 @@ public class Ball : MonoBehaviour
     private Vector3 previousPosition;
     private bool firstTimeBounce = true;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip speedBoostSound;
+    public AudioClip brickSound;
+    public AudioClip wallSound;
+    public AudioClip platformSound;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -51,6 +58,11 @@ public class Ball : MonoBehaviour
             if (collision.gameObject.CompareTag("brick"))
             {
                 collision.gameObject.GetComponent<Brick>().HandleHit();
+                audioSource.PlayOneShot(brickSound);
+            }
+            else
+            {
+                audioSource.PlayOneShot(wallSound);
             }
         }
         if (collision.gameObject.CompareTag("platform"))
@@ -66,6 +78,7 @@ public class Ball : MonoBehaviour
         {
             Destroy(other.gameObject);
             ballSpeed += 50f;
+            audioSource.PlayOneShot(speedBoostSound);
         }
     }
 
@@ -85,6 +98,7 @@ public class Ball : MonoBehaviour
         ballDirection = GameManager.instance.lauchBall.launchDirection;
         GameManager.instance.lauchBall.hitMark.SetActive(false);
         GameManager.instance.platformHitTimes++;
+        audioSource.PlayOneShot(platformSound);
     }
 
     private IEnumerator FirstBounce()
