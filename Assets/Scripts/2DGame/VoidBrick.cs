@@ -8,11 +8,15 @@ public class VoidBrick : MonoBehaviour
     private Transform _player;
     public Camera _toCamera;
     public Intro _intro;
+
+    public AudioClip _2Dto3DSound;
+    public AudioSource _audioSource;
     // Start is called before the first frame update
     private void Awake()
     {
         _toCamera = GameObject.FindGameObjectWithTag("platform").GetComponent<Camera>();
         _intro = FindAnyObjectByType<Intro>();
+        _audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -27,6 +31,8 @@ public class VoidBrick : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ball"))
         {
+            _audioSource.clip = _2Dto3DSound;
+            _audioSource.Play();
             foreach (Transform trans in _bricksHolder)
             {
                 if (!trans.GetComponent<VoidBrick>())
