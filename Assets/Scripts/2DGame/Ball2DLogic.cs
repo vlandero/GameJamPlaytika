@@ -19,7 +19,7 @@ public class Ball2DLogic : MonoBehaviour
 
     private IEnumerator AddForce()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         _rb.velocity = new Vector2(0, -_speed);
     }
 
