@@ -370,6 +370,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 4891734760510080860, guid: 75a938a3286e69d44813f36fd6bfb670,
+        type: 3}
+      propertyPath: normalBallSpeed
+      value: 550
+      objectReference: {fileID: 0}
     - target: {fileID: 6611778451751016866, guid: 75a938a3286e69d44813f36fd6bfb670,
         type: 3}
       propertyPath: m_LocalPosition.x

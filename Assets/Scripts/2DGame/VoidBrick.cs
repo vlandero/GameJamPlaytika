@@ -56,7 +56,7 @@ public class VoidBrick : MonoBehaviour
         StartCoroutine(CameraSwap.SwitchCameras(Camera.main, _toCamera, 1f));
 
         yield return new WaitForSeconds(1f);
-        _intro.StartChatBox(3);
+        _intro.StartChatBox(4);
 
         yield return new WaitUntil(() => _intro.n == 0);
 
