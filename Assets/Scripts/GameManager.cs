@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +33,11 @@ public class GameManager : MonoBehaviour
     public Sprite wasdSprite;
     public Sprite middleClickSprite;
     [HideInInspector] public bool tutorialStepActive = false;
+    [Header("Score")]
+    public int platformHitTimes = 0;
+    public int stars3HitTimes = 2;
+    public int stars2HitTimes = 10;
+
 
     private void Awake()
     {
@@ -102,8 +108,29 @@ public class GameManager : MonoBehaviour
     public void GameOverWin()
     {
         Time.timeScale = 0;
+        string progressData = PlayerPrefs.GetString("LevelProgress");
+        ToSerialize savedLevelsData = JsonUtility.FromJson<ToSerialize>(progressData);
+        int starsGained = 1;
+        if (platformHitTimes <= stars3HitTimes)
+        {
+            starsGained = 3;
+        }
+        else if (platformHitTimes <= stars2HitTimes)
+        {
+            starsGained = 2;
+        }
+        Debug.Log(progressData);
+        int currentStars = savedLevelsData.levelsData[SceneManager.GetActiveScene().buildIndex - 2].starsGained;
+        savedLevelsData.levelsData[SceneManager.GetActiveScene().buildIndex - 2].starsGained = starsGained > currentStars ? starsGained : currentStars;
+        if(SceneManager.GetActiveScene().buildIndex - 1 <= 3)
+        {
+            savedLevelsData.levelsData[SceneManager.GetActiveScene().buildIndex - 1].unlocked = true;
+        }
+        progressData = JsonUtility.ToJson(savedLevelsData);
+        PlayerPrefs.SetString("LevelProgress", progressData);
+        PlayerPrefs.Save();
+        winCanvas.GetComponentInChildren<ShowStars>().starNumber = starsGained;
         winCanvas.SetActive(true);
-
     }
 
     public void DestroyBrick()

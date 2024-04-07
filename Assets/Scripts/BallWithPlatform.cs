@@ -88,6 +88,7 @@ public class BallWithPlatform : MonoBehaviour
     public void StartLevel()
     {
         if (!generateLevelsUI.levelsData[generateLevelsUI.currentLevel - 1].unlocked) return;
-        Debug.Log("Current level: " + generateLevelsUI.currentLevel + " started!");
+        SceneLoader sceneLoader = new SceneLoader();
+        sceneLoader.LoadScene(generateLevelsUI.currentLevel + 1);
     }
 }
