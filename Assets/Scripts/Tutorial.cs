@@ -17,7 +17,7 @@ public class Tutorial : MonoBehaviour
 
     public IEnumerator Sequence()
     {
-        GameManager.instance.frozen = true;
+        //GameManager.instance.frozen = true;
         GetComponent<Canvas>().enabled = true;
         Time.timeScale = 0;
         if (currentStep == 0)
@@ -53,7 +53,7 @@ public class Tutorial : MonoBehaviour
             GameManager.instance.ballComponent.ballSpeed = GameManager.instance.ballComponent.normalBallSpeed;
         }
         GetComponent<Canvas>().enabled = false;
-        GameManager.instance.frozen = false;
+        //GameManager.instance.frozen = false;
         Time.timeScale = 1;
     }
 
