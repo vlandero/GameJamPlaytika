@@ -9,6 +9,11 @@ public class LevelData
     public bool secretUnlocked;
 }
 
+public class ToSerialize
+{
+    public LevelData[] levelsData;
+}
+
 public class GenerateLevelsUI : MonoBehaviour
 {
     public GameObject cubePrefab;
@@ -17,13 +22,15 @@ public class GenerateLevelsUI : MonoBehaviour
     public GameObject[] cubes;
 
     public LevelData[] levelsData;
+    public LevelData[] defaultLevelsData;
     public int currentLevel = 0;
 
     private const string PlayerPrefKey = "LevelProgress";
 
     void Start()
     {
-        // LoadLevelProgress();
+        LoadLevelProgress();
+        Time.timeScale = 1f;
         cubes = new GameObject[levelsData.Length + 1];
         GenerateCubes();
     }
@@ -47,9 +54,11 @@ public class GenerateLevelsUI : MonoBehaviour
 
     void SaveLevelProgress()
     {
-        string progressData = JsonUtility.ToJson(levelsData);
+        string progressData = JsonUtility.ToJson(new ToSerialize { levelsData=levelsData } );
         PlayerPrefs.SetString(PlayerPrefKey, progressData);
         PlayerPrefs.Save();
+        Debug.Log("Saving level progress");
+        Debug.Log(progressData);
     }
 
     void LoadLevelProgress()
@@ -57,18 +66,24 @@ public class GenerateLevelsUI : MonoBehaviour
         if (PlayerPrefs.HasKey(PlayerPrefKey))
         {
             string progressData = PlayerPrefs.GetString(PlayerPrefKey);
-            LevelData[] savedLevelsData = JsonUtility.FromJson<LevelData[]>(progressData);
-            for (int i = 0; i < savedLevelsData.Length; i++)
+            if(progressData == "{}")
             {
-                levelsData[i].starsGained = savedLevelsData[i].starsGained;
-                levelsData[i].unlocked = savedLevelsData[i].unlocked;
-                levelsData[i].secretUnlocked = savedLevelsData[i].secretUnlocked;
+                levelsData = defaultLevelsData;
+                SaveLevelProgress();
+                return;
+            }
+            ToSerialize savedLevelsData = JsonUtility.FromJson<ToSerialize>(progressData);
+            for (int i = 0; i < savedLevelsData.levelsData.Length; i++)
+            {
+                levelsData[i].starsGained = savedLevelsData.levelsData[i].starsGained;
+                levelsData[i].unlocked = savedLevelsData.levelsData[i].unlocked;
+                levelsData[i].secretUnlocked = savedLevelsData.levelsData[i].secretUnlocked;
             }
         }
+        else
+        {
+            levelsData = defaultLevelsData;
+            SaveLevelProgress();
+        }
     }
-
-    //private void OnDestroy()
-    //{
-    //    SaveLevelProgress();
-    //}
 }

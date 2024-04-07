@@ -75,6 +75,7 @@ public class Ball : MonoBehaviour
         transform.position = GameManager.instance.lauchBall.launchPosition;
         ballDirection = GameManager.instance.lauchBall.launchDirection;
         GameManager.instance.lauchBall.hitMark.SetActive(false);
+        GameManager.instance.platformHitTimes++;
     }
 
     private IEnumerator FirstBounce()
