@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class LevelData
@@ -7,6 +8,7 @@ public class LevelData
     public int starsGained;
     public bool unlocked;
     public bool secretUnlocked;
+    public Sprite levelImage;
 }
 
 public class ToSerialize
