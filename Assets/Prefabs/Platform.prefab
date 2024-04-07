@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 5375548490442636714}
   - component: {fileID: 2134562762256025265}
   - component: {fileID: 6211737528918471584}
+  - component: {fileID: 2744948500308154863}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -280,6 +281,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 20
   maxRotationAngle: 45
+--- !u!81 &2744948500308154863
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426643023902110452}
+  m_Enabled: 1
 --- !u!1 &2181762380925324587
 GameObject:
   m_ObjectHideFlags: 0

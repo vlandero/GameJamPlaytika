@@ -10,7 +10,7 @@ public class ResolutionChanger : MonoBehaviour
     private List<Resolution> filteredResolutions;
 
     private float currentRefreshRate;
-    private int currentResolutionIndex =0;
+    private int currentResolutionIndex = 0;
    
 
     private void Start()
