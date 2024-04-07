@@ -16,5 +16,6 @@ public class PauseWithEscape : MonoBehaviour
     public void Pause()
     {
         pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
     }
 }

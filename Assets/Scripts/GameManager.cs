@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public GameObject bricksComponent;
     public GameObject ball;
     public GameObject platform;
+    public GameObject loseCanvas;
+    public GameObject winCanvas;
     //public MoveArrow moveArrowComponent;
     [HideInInspector] public Camera SideCamera;
     [HideInInspector] public Camera PlatformCamera;
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
         ballComponent = ball.GetComponent<Ball>();
         //moveArrowComponent = platform.GetComponent<MoveArrow>();
         playerMovementwasd = platform.GetComponent<PlayerMovementWASD>();
@@ -93,12 +96,14 @@ public class GameManager : MonoBehaviour
     public void GameOverLoss()
     {
         Time.timeScale = 0;
+        loseCanvas.SetActive(true);
     }
 
     public void GameOverWin()
     {
         Time.timeScale = 0;
-        Debug.Log("You win!");
+        winCanvas.SetActive(true);
+
     }
 
     public void DestroyBrick()
