@@ -7,7 +7,7 @@ public class BrickSpawner2D : MonoBehaviour
     [SerializeField]
     private GameObject _brickHeartPrefab;
     private int[,] _grid = new int[10, 9] {
-        {0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        {2, 0, 0, 0, 0, 0, 0, 0, 2 },
         {0, 0, 1, 0, 0, 0, 1, 0, 0 },
         {0, 1, 1, 1, 0, 1, 1, 1, 0 },
         {0, 1, 1, 1, 1, 1, 1, 1, 0 },
