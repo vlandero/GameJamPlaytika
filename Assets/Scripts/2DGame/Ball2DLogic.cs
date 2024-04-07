@@ -8,10 +8,18 @@ public class Ball2DLogic : MonoBehaviour
     private float _speed;
     private Rigidbody2D _rb;
     private Vector2 _direction;
+
+    public AudioSource _audioSource;
+
+    public AudioClip _brickHit;
+    public AudioClip _playerHit;
+    public AudioClip _die;
+
     // Start is called before the first frame update
     void Start()
     {
         var parent = transform.parent.GetComponent<Renderer>();
+        _audioSource = this.GetComponent<AudioSource>();
         _speed = parent.bounds.max.x - parent.bounds.max.y * 2f;
         _rb = GetComponent<Rigidbody2D>();
         StartCoroutine(AddForce());
@@ -27,10 +35,14 @@ public class Ball2DLogic : MonoBehaviour
     {
         if (other.gameObject.CompareTag("brick"))
         {
+            _audioSource.clip = _brickHit;
+            _audioSource.Play();
             Destroy(other.gameObject);
         }
         if(other.gameObject.CompareTag("Player"))
         {
+            _audioSource.clip = _playerHit;
+            _audioSource.Play();
             Vector2 heading = other.transform.position - transform.position;
             _direction = heading / heading.magnitude;
 
@@ -38,6 +50,8 @@ public class Ball2DLogic : MonoBehaviour
         }
         if (other.gameObject.CompareTag("bottomWall"))
         {
+            _audioSource.clip = _die;
+            _audioSource.Play();
             var scene = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(scene);
         }
